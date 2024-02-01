@@ -1,9 +1,13 @@
-
 import './App.css';
-import {MdClose} from 'react-icons/md'
 import { useEffect, useState } from 'react';
 import axios from "axios"
 import FormCard from './components/FormCard';
+import FormData from './components/FormData';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import OutputCard from './components/OutputCard';
+import { MdClose } from 'react-icons/md';
+// import InputFields from './InputFields';
 
 axios.defaults.baseURL = "http://localhost:8080/"
 
@@ -47,7 +51,7 @@ function App() {
   }
 
   const handleSubmit =async(e)=>{
-    e.preventDefault()
+    // e.preventDefault()
     const data=await axios.post("/create",formData)
     console.log(data)
     if(data.data.success){
@@ -55,7 +59,7 @@ function App() {
       alert(data.data.message)
       getFetchData()
       setformData({
-        mobile: "",
+        phone: "",
         name:"",
         dob: "",
         sex: "",
@@ -100,7 +104,7 @@ function App() {
     }
 
     const handleUpdate = async(e)=>{
-       e.preventDefault()
+      //  e.preventDefault()
        const data = await axios.put("/update/",formDataEdit)
        if(data.data.success){
         getFetchData()
@@ -125,14 +129,23 @@ function App() {
     return (
       <div className="App bg-gray-100 min-h-screen p-4">
         <div className="container mx-auto">
+          
+          <div className='flex justify-between'> 
           <button
             className="btn btn-add bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => setAddSection(true)}
+            onClick={()=>  {
+              setAddSection(true)
+            }}
           >
             Add
           </button>
+          <div className='close-btn' onClick={() => { setAddSection(false); setEditSection(false)}}> <MdClose/> </div>
+
+          </div>
+
           {addSection && (
-            <FormCard
+          
+            <FormData
               handleSubmit={handleSubmit}
               handleOnChange={handleOnChange}
               handleclose={() => setAddSection(false)}
@@ -140,66 +153,21 @@ function App() {
             />
           )}
           {editSection && (
-            <FormCard
+            <FormData
               handleSubmit={handleUpdate}
               handleOnChange={handleEditOnChange}
               handleclose={() => setEditSection(false)}
               rest={formDataEdit}
             />
           )}
+          
   
-          <div className="cardContainer mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {dataList.map((e1) => (
-              <div
-                className="card bg-white rounded-lg p-4 shadow-md"
-                key={e1._id}
-              >
-                <div>
-                  <strong className="font-bold text-lg">Mobile No:</strong>{" "}
-                  {e1.mobile}
-                </div>
-                <div>
-                  <strong className="font-bold text-lg">Name:</strong> {e1.name}
-                </div>
-                <div>
-                  <strong className="font-bold text-lg">DOB:</strong> {e1.dob}
-                </div>
-                <div>
-                  <strong className="font-bold text-lg">Sex:</strong> {e1.sex}
-                </div>
-                <div>
-                  <strong className="font-bold text-lg">Age:</strong> {e1.age}
-                </div>
-                <div>
-                  <strong className="font-bold text-lg">F-Name:</strong>{" "}
-                  {e1.fname}
-                </div>
-                <div>
-                  <strong className="font-bold text-lg">Weight:</strong>{" "}
-                  {e1.weight}
-                </div>
-                <div>
-                  <strong className="font-bold text-lg">Address:</strong>{" "}
-                  {e1.address}
-                </div>
-  
-                <div className="cardButtons mt-2 flex justify-end">
-                  <button
-                    className="btn btn-edit  bg-yellow-400 text-black  hover:bg-green-200 font-bold py-1 px-2 rounded"
-                    onClick={() => handleEdit(e1)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-delete bg-red-500  text-black  hover:bg-red-700font-bold py-1 px-2 rounded ml-2"
-                    onClick={() => handleDelete(e1._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+       {
+        !addSection &&(
+          <OutputCard dataList = {dataList} handleEdit={handleEdit} handleDelete={handleDelete}/>
+        )
+       }
+      
         </div>
       </div>
     );
