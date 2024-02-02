@@ -3,6 +3,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import InputFields from './InputFields';
 import { MdClose } from 'react-icons/md'
+import CurrentDate from './CurrentDate';
 
 const FormData = ({ handleSubmit, handleOnChange, rest }) => {
 
@@ -115,7 +116,7 @@ const FormData = ({ handleSubmit, handleOnChange, rest }) => {
               <div className=" w-full flex   pb-1 leading-7">
 
                 <div className='flex items-center w-2/7 '>
-                  <label htmlFor="Mobile" className="block text-sm   font-semibold text-gray-600 ">
+                  <label htmlFor="Mobile" className="block text-sm  whitespace-nowrap font-semibold text-gray-600 ">
                     Contact No:
                   </label>
                   <input type="number" id='phone' name='phone' onChange={handleOnChange} value={rest.phone}
@@ -192,7 +193,7 @@ const FormData = ({ handleSubmit, handleOnChange, rest }) => {
                     placeholder="Enter Address"
                   />
                 </div>
-                <div className='flex items-center px-2'>
+                {/* <div className='flex items-center px-2'>
                   <label htmlFor="dobInput" className="block font-semibold  text-sm text-gray-600 ">
                     Date:
                   </label>
@@ -201,7 +202,8 @@ const FormData = ({ handleSubmit, handleOnChange, rest }) => {
                     className="appearance-none w-4/5  bg-white border-b-2 border-dotted border-gray-400
                       px-5 leading-1 focus:outline-none focus:border-blue-500"
                   />
-                </div>
+                </div> */}
+                <CurrentDate/>
               </div>
 
 
@@ -215,90 +217,90 @@ const FormData = ({ handleSubmit, handleOnChange, rest }) => {
             {/* /// Hero part  */}
             {/* /// agar height adjust karni hai tow yahan karna hai  */}
             <div className="container flex h-screen relative">
-            {/* Background Image */}
-            <div className='absolute inset-0'>
-              <img src="./assets/wecarebg.png" className='h-80 w-120 object-cover mx-auto  mt-72  opacity-15' alt="" />
-            </div>
+              {/* Background Image */}
+              <div className='absolute inset-0'>
+                <img src="./assets/wecarebg.png" className='h-80 w-120 object-cover mx-auto  mt-72  opacity-15' alt="" />
+              </div>
 
-            <div className="w-1/2 flex  h-screen  flex-col justify-between  relative z-10">
-             
+              <div className="w-1/2 flex  h-screen  flex-col justify-between  relative z-10">
+
                 {/* Content for the first half-width div */}
                 <div className='p-4'>
                   <div className='space-y-28 '>
                     <h1 className=' underline font-bold'>Present Complaints</h1>
-                 <div className=''>
-                 <div className='space-y-4  '>
-                    <h1 className=' underline font-bold'>Past History</h1>
-                  <h1 className=' underline font-bold'>Family History</h1>
-                  <h1 className=' underline font-bold'>Dietary History</h1>
-                  <h1 className=' underline font-bold'>Development History</h1>
-                  <h1 className=' font-semibold'>Allergy (if any)</h1>
-                  <h1 className=' underline font-bold'>General Examination</h1>
-                   <div className='flex justify-between  '>
-                   <h1>B.P</h1>
-                    <h1>Temp</h1>
-                    <h1>H.R</h1>
-                    <h1>R.R</h1>
-                   </div>
+                    <div className=''>
+                      <div className='space-y-4  '>
+                        <h1 className=' underline font-bold'>Past History</h1>
+                        <h1 className=' underline font-bold'>Family History</h1>
+                        <h1 className=' underline font-bold'>Dietary History</h1>
+                        <h1 className=' underline font-bold'>Development History</h1>
+                        <h1 className=' font-semibold'>Allergy (if any)</h1>
+                        <h1 className=' underline font-bold'>General Examination</h1>
+                        <div className='flex justify-between  '>
+                          <h1>B.P</h1>
+                          <h1>Temp</h1>
+                          <h1>H.R</h1>
+                          <h1>R.R</h1>
+                        </div>
 
-                   <h1 className=' underline font-bold'>Anthrometry</h1>
-                   <div className='flex justify-between'>
-                   <h1>Height/length</h1>
-                    <h1>H.O</h1>
-                    <h1>Weight</h1>
-                   </div>
-                   <h1 className=' underline font-bold'>Systemic Examination</h1>
+                        <h1 className=' underline font-bold'>Anthrometry</h1>
+                        <div className='flex justify-between'>
+                          <h1>Height/length</h1>
+                          <h1>H.O</h1>
+                          <h1>Weight</h1>
+                        </div>
+                        <h1 className=' underline font-bold'>Systemic Examination</h1>
+                      </div>
+
+                    </div>
                   </div>
-                  
-                 </div>
-                  </div>
-                  
+
                 </div>
-            
 
-              <div>
-                    <h1 className=' underline font-bold mb-2'>Pain Score</h1>
-                    <img className='h-20 ' src="./assets/pain_scale.png" alt="" />
-                  </div>
-            </div>
-              {/* // divider  */}
-            <div className="border-l border-gray-400 z-20"></div>
 
-            <div className="w-1/2  h-screen flex flex-col relative z-10">
-              <div className="flex-grow flex flex-col justify-between p-4">
-                {/* Content for the second half-width div */}
-                <div className='space-y-20  underline font-bold'>
-                  <div className=' space-y-5'>
-                    <h1>Provisional</h1>
-                    <h1>Investigation</h1>
-                  </div>
-                  <h1>Treatment</h1>
+                <div>
+                  <h1 className=' underline font-bold mb-2'>Pain Score</h1>
+                  <img className='h-20 ' src="./assets/pain_scale.png" alt="" />
                 </div>
-                <h1 className=' underline font-bold'> Follow Up Visit</h1>
-
               </div>
+              {/* // divider  */}
+              <div className="border-l border-gray-400 z-20"></div>
+
+              <div className="w-1/2  h-screen flex flex-col relative z-10">
+                <div className="flex-grow flex flex-col justify-between p-4">
+                  {/* Content for the second half-width div */}
+                  <div className='space-y-20  underline font-bold'>
+                    <div className=' space-y-5'>
+                      <h1>Provisional</h1>
+                      <h1>Investigation</h1>
+                    </div>
+                    <h1>Treatment</h1>
+                  </div>
+                  <h1 className=' underline font-bold'> Follow Up Visit</h1>
+
+                </div>
+              </div>
+
+
             </div>
-
-            
-          </div>
-        </div>
-
           </div>
 
         </div>
 
-
-        <div className='max-h-full min-w-full relative flex justify-evenly'>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">
-        Cancel
-      </button>
-      <button onClick={handleButtonClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">
-        Submit
-      </button>
-    </div>
-  
       </div>
-    
-);
+
+
+      <div className='max-h-full min-w-full relative flex justify-evenly'>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">
+          Cancel
+        </button>
+        <button onClick={handleButtonClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out">
+          Submit
+        </button>
+      </div>
+
+    </div>
+
+  );
 }
 export default FormData
